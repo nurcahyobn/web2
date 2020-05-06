@@ -33,3 +33,13 @@ Langkah-langkah yang harus dilakukan untuk membuat project CI:
 
 ![Tampilan Awal](/ci-welcome.png)
 
+## Mengubah isi CodeIgniter
+
+> Buka file 📄 `application/views/welcome_message.php` Lalu ubah teks pada baris 71.
+
+```html
+<div id="container">
+	<h1>Project CodeIgniter (Nurcahyo-4SIA10)</h1>
+```  
+
+
