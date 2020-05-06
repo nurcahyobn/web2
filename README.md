@@ -1,37 +1,30 @@
-## Welcome to GitHub Pages
+## Pengenalan Codeigniter
 
-You can use the [editor on GitHub](https://github.com/nurcahyobn/web2/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+Codeigniter merupakan sebuah framework PHP yang menggunakan pola desain (design pattern) MVC (Model View Controller). CodeIgniter dirilis pertama kali pada 28 Februari 2006.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+Codeigniter cocok digunakan untuk membuat aplikasi web seperti:
 
-### Markdown
+- Portal Berita;
+- Sistem Informasi;
+- Web Startup;
+- Profile Company;
+- eComerce;
+- Blog;
+- dan sebagainya.
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+### Kelebihan Codeigniter
 
-```markdown
-Syntax highlighted code block
+Ada beberapa kelebihan CodeIgniter (CI) dibandingkan dengan Framework PHP lain, 3
 
-# Header 1
-## Header 2
-### Header 3
+- Performa cepat: Codeigniter merupakan framework yang paling cepat dibanding framework yang lain. 
+- Konfigurasi yang minim .
+- Dokumentasi yang lengkap: Codeigniter disertai dengan user_guide yang berisi dokumentasi yang lengkap.
+- Mudah dipelajari pemula: Bagi pemula, CI sangat mudah dipelajari.
 
-- Bulleted
-- List
+### Memulai Project Codeigniter
 
-1. Numbered
-2. List
+Langkah-langkah yang harus dilakukan untuk membuat project CI:
 
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/nurcahyobn/web2/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+1. Download [Codeigniter] Ver-3 (https://www.codeigniter.com/download)
+2. Copy file CI ke `htdocs` lalu `Ekstrak`
+3. Ubah nama folder dengan 'latih1'
