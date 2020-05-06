@@ -25,6 +25,6 @@ Ada beberapa kelebihan CodeIgniter (CI) dibandingkan dengan Framework PHP lain, 
 
 Langkah-langkah yang harus dilakukan untuk membuat project CI:
 
-1. Download [Codeigniter] Ver-3 (https://www.codeigniter.com/download)
+1. Download [Codeigniter Ver 3](https://www.codeigniter.com/download)
 2. Copy file CI ke `htdocs` lalu `Ekstrak`
 3. Ubah nama folder dengan 'latih1'
