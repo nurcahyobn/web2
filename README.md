@@ -27,4 +27,9 @@ Langkah-langkah yang harus dilakukan untuk membuat project CI:
 
 1. Download [Codeigniter Ver 3](https://www.codeigniter.com/download)
 2. Copy file CI ke `htdocs` lalu `Ekstrak`
-3. Ubah nama folder dengan 'latih1'
+3. Ubah nama folder dengan `latih1`
+
+> Sekarang buka: `http://localhost/latih1/`
+
+![Tampilan Awal](/ci-welcome.png)
+
