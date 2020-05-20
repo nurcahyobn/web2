@@ -44,8 +44,8 @@ Langkah-langkah yang harus dilakukan untuk membuat project CI:
 
 # Pertemuan 09 - Bootstrap
 
-> Buka situs [getbootstrap](https://getbootstrap.com) lalu pilih `Documentation`.
-> Buka file 📄 `application/views/welcome_message.php` Lalu ubah `HTML`.
+* Buka situs [getbootstrap](https://getbootstrap.com) lalu pilih `Documentation`.
+* Buka file 📄 `application/views/welcome_message.php` Lalu ubah `HTML`.
 
 ```html
 <!DOCTYPE html>
