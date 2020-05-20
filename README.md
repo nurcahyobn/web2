@@ -44,19 +44,34 @@ Langkah-langkah yang harus dilakukan untuk membuat project CI:
 
 # Pertemuan 09 - Bootstrap
 
-* Buka situs [getbootstrap](https://getbootstrap.com) lalu pilih `Documentation`.
+* Buka situs [getbootstrap](https://getbootstrap.com) lalu pilih `Documentation`  baca `Get started`.
 * Buka file 📄 `application/views/welcome_message.php` Lalu ubah `HTML`.
 
 ```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<!-- COPAS css dan script Bootstrap -->
-	
+	<!--bootstrap-->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-
-</body>
-</html>
 ```  
 
+* masih di `Documentation` pilih `Components`.
+* Tambahkan `body` pada file 📄 `application/views/welcome_message.php`.
+
+```html
+<body>
+	<div class="container">
+		<div class="alert alert-primary" role="alert">
+			A simple primary alert—check it out!
+		</div>
+	</div>
+</body>
+</html>
+```
+
+### Tugas dikumpul besok dengan mencoba tiap2 `component`
