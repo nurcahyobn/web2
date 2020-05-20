@@ -42,4 +42,21 @@ Langkah-langkah yang harus dilakukan untuk membuat project CI:
 	<h1>Project CodeIgniter (Nurcahyo-4SIA10)</h1>
 ```  
 
+# Pertemuan 09 - Bootstrap
+
+> Buka situs [getbootstrap](https://getbootstrap.com) lalu pilih `Documentation`.
+> Buka file 📄 `application/views/welcome_message.php` Lalu ubah `HTML`.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- COPAS css dan script Bootstrap -->
+	
+</head>
+<body>
+
+</body>
+</html>
+```  
 
