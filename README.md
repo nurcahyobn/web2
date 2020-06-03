@@ -19,8 +19,8 @@
 
 ```php
 	'hostname' => 'localhost',
-	'mahasiswaname' => 'root',
-	'kelas' => '',
+	'username' => 'root',
+	'password' => '',
 	'database' => 'test',
 ```
 
