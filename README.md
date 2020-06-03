@@ -1,77 +1,147 @@
-## Pengenalan Codeigniter
+# Aplikasi CI : Mengatur Bootstrap untuk Data Mahasiswa
 
-Codeigniter merupakan sebuah framework PHP yang menggunakan pola desain (design pattern) MVC (Model View Controller). CodeIgniter dirilis pertama kali pada 28 Februari 2006.
+> `Step-1` : Menggunakan  `Bootstrap` pada `CodeIgniter`
+> Download [Bootstrap] Bootstrap (/bootstrap.zip) letakkan di folder `latih1`
 
-Codeigniter cocok digunakan untuk membuat aplikasi web seperti:
+> `Step-2` : Database mysql `test` dengan nama tabel `mahasiswa`:
 
-- Portal Berita;
-- Sistem Informasi;
-- Web Startup;
-- Profile Company;
-- eComerce;
-- Blog;
-- dan sebagainya.
-
-### Kelebihan Codeigniter
-
-Ada beberapa kelebihan CodeIgniter (CI) dibandingkan dengan Framework PHP lain, 3
-
-- Performa cepat: Codeigniter merupakan framework yang paling cepat dibanding framework yang lain. 
-- Konfigurasi yang minim .
-- Dokumentasi yang lengkap: Codeigniter disertai dengan user_guide yang berisi dokumentasi yang lengkap.
-- Mudah dipelajari pemula: Bagi pemula, CI sangat mudah dipelajari.
-
-### Memulai Project Codeigniter
-
-Langkah-langkah yang harus dilakukan untuk membuat project CI:
-
-1. Download [Codeigniter Ver 3](https://www.codeigniter.com/download)
-2. Copy file CI ke `htdocs` lalu `Ekstrak`
-3. Ubah nama folder dengan `latih1`
-
-> Sekarang buka: `http://localhost/latih1/`
-
-![Tampilan Awal](/ci-welcome.png)
-
-## Mengubah isi CodeIgniter
-
-> Buka file 📄 `application/views/welcome_message.php` Lalu ubah teks pada baris 71.
-
-```html
-<div id="container">
-	<h1>Project CodeIgniter (Nurcahyo-4SIA10)</h1>
-```  
-
-# Pertemuan 09 - Bootstrap
-
-* Buka situs [getbootstrap](https://getbootstrap.com) lalu pilih `Documentation`  baca `Get started`.
-* Buka file 📄 `application/views/welcome_message.php` Lalu ubah `HTML`.
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<!--bootstrap-->
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-</head>
-<body>
-```  
-
-* masih di `Documentation` pilih `Components`.
-* Tambahkan `body` pada file 📄 `application/views/welcome_message.php`.
-
-```html
-<body>
-	<div class="container">
-		<div class="alert alert-primary" role="alert">
-			A simple primary alert—check it out!
-		</div>
-	</div>
-</body>
-</html>
+```sql
+    CREATE TABLE `mahasiswa` (
+        `id` int(11) NOT NULL AUTO_INCREMENT,
+        `namamhs` varchar(30) NOT NULL,
+        `kelas` varchar(10) NOT NULL,
+        `alamat` varchar(100) NOT NULL,
+    PRIMARY KEY(`id`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 ```
 
-### Tugas dikumpul besok dengan mencoba tiap2 `component`
+> `Step-3` : Koneksi CI ke MYSQL. Buka file `database.php` di folder `application/config`.
+
+```php
+	'hostname' => 'localhost',
+	'mahasiswaname' => 'root',
+	'kelas' => '',
+	'database' => 'test',
+```
+
+> `Step-4` : Konfigurasi URL Homebase. Edit `config.php` di folder `application/config`.
+
+```
+$config['base_url'] = 'http://localhost/latih1/';
+```
+
+> `Step-5` : Membuat `MODEL` di CI. 
+
+* Buat file `Mahasiswas_model.php` di folder `application/models`.
+* Perhatikan bahwa huruf pertama nama model harus dalam huruf CAPITAL.
+* Nama model disesuaikan dengan nama `tabel` atau `objek` untuk mudah dipahami.
+
+```php
+<?php
+	class Mahasiswa_model extends CI_Model {
+		function __construct(){
+			parent::__construct();
+			$this->load->database();
+		}
+ 
+		public function getAllMahasiswa(){
+			$query = $this->db->get('mahasiswa');
+			return $query->result(); 
+		}
+ 
+		public function insertMahasiswa($mahasiswa){
+			return $this->db->insert('mahasiswa', $mahasiswa);
+		}
+ 
+		public function getMahasiswa($id){
+			$query = $this->db->get_where('mahasiswa',array('id'=>$id));
+			return $query->row_array();
+		}
+ 
+		public function updateMahasiswa($mahasiswa, $id){
+			$this->db->where('mahasiswa.id', $id);
+			return $this->db->update('mahasiswa', $mahasiswa);
+		}
+ 
+		public function deleteMahasiswa($id){
+			$this->db->where('mahasiswa.id', $id);
+			return $this->db->delete('mahasiswa');
+		}
+ 
+	}
+?>
+```
+
+> `Step-6` : Membuat `Controller` di CI
+
+* Buat file `Mahasiswa.php` di folder `application/controllers`.
+* Perhatikan penamaan file, sama seperti nama `model` diawali huruf CAPITAL.
+* Digunakan untuk mengatur aplikasi pada data mahasiswa.
+
+```php
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+ 
+class Mahasiswa extends CI_Controller {
+ 
+	function __construct(){
+		parent::__construct();
+		$this->load->helper('url');
+		$this->load->model('mahasiswa_model');
+	}
+ 
+	public function index(){
+		$data['mahasiswa'] = $this->mahasiswa_model->getAllMahasiswa();
+		$this->load->view('mahasiswa_list.php', $data);
+	}
+ 
+	public function addnew(){
+		$this->load->view('addmahasiswa.php');
+	}
+ 
+	public function insert(){
+		$mahasiswa['namamhs'] = $this->input->post('namamhs');
+		$mahasiswa['kelas'] = $this->input->post('kelas');
+		$mahasiswa['alamat'] = $this->input->post('alamat');
+ 
+		$query = $this->mahasiswa_model->insertMahasiswa($mahasiswa);
+ 
+		if($query){
+			header('location:'.base_url().$this->index());
+		}
+ 
+	}
+ 
+	public function edit($id){
+		$data['mahasiswa'] = $this->mahasiswa_model->getmahasiswa($id);
+		$this->load->view('editform', $data);
+	}
+ 
+	public function update($id){
+		$mahasiswa['namamhs'] = $this->input->post('namamhs');
+		$mahasiswa['kelas'] = $this->input->post('kelas');
+		$mahasiswa['alamat'] = $this->input->post('alamat');
+ 
+		$query = $this->mahasiswa_model->updatemahasiswa($mahasiswa, $id);
+ 
+		if($query){
+			header('location:'.base_url().$this->index());
+		}
+	}
+ 
+	public function delete($id){
+		$query = $this->mahasiswa_model->deletemahasiswa($id);
+ 
+		if($query){
+			header('location:'.base_url().$this->index());
+		}
+	}
+} 
+?>
+```
+
+> `Step-8` : Mengatur `ROUTE` di CI. Edit `routes.php` di folder `application/config`.
+
+```
+$route['default_controller'] = 'mahasiswa';
+```
