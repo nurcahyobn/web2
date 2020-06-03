@@ -1,8 +1,7 @@
-# Aplikasi CI : Mengatur Bootstrap untuk Data Mahasiswa
+# Pert10-Bootstrap
 
 > `Step-1` : Menggunakan  `Bootstrap` pada `CodeIgniter`
-
-* Download [Bootstrap](https://github.com/nurcahyobn/web2/raw/master/bootstrap.zip) letakkan di folder `latih1`
+> Download [Bootstrap] Bootstrap (/bootstrap.zip) letakkan di folder `latih1`
 
 > `Step-2` : Database mysql `test` dengan nama tabel `mahasiswa`:
 
@@ -33,7 +32,7 @@ $config['base_url'] = 'http://localhost/latih1/';
 
 > `Step-5` : Membuat `MODEL` di CI. 
 
-* Buat file `Mahasiswas_model.php` di folder `application/models`.
+* Buat file `Mahasiswa_model.php` di folder `application/models`.
 * Perhatikan bahwa huruf pertama nama model harus dalam huruf CAPITAL.
 * Nama model disesuaikan dengan nama `tabel` atau `objek` untuk mudah dipahami.
 
@@ -114,8 +113,8 @@ class Mahasiswa extends CI_Controller {
 	}
  
 	public function edit($id){
-		$data['mahasiswa'] = $this->mahasiswa_model->getmahasiswa($id);
-		$this->load->view('editform', $data);
+		$data['mahasiswa'] = $this->mahasiswa_model->getMahasiswa($id);
+		$this->load->view('editmahasiswa.php', $data);
 	}
  
 	public function update($id){
@@ -123,7 +122,7 @@ class Mahasiswa extends CI_Controller {
 		$mahasiswa['kelas'] = $this->input->post('kelas');
 		$mahasiswa['alamat'] = $this->input->post('alamat');
  
-		$query = $this->mahasiswa_model->updatemahasiswa($mahasiswa, $id);
+		$query = $this->mahasiswa_model->updateMahasiswa($mahasiswa, $id);
  
 		if($query){
 			header('location:'.base_url().$this->index());
@@ -131,7 +130,7 @@ class Mahasiswa extends CI_Controller {
 	}
  
 	public function delete($id){
-		$query = $this->mahasiswa_model->deletemahasiswa($id);
+		$query = $this->mahasiswa_model->deleteMahasiswa($id);
  
 		if($query){
 			header('location:'.base_url().$this->index());
@@ -145,4 +144,106 @@ class Mahasiswa extends CI_Controller {
 
 ```
 $route['default_controller'] = 'mahasiswa';
+```
+
+> `Step-9` : Membuat `VIEW` sesuai Controller pada `Step-6`. Buka folder `application/views`.
+
+* Buat file : `mahasiswa_list.php`
+
+```php
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>bootstrap/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+	<h1 class="page-header text-center">CRUD Data Mahasiswa</h1>
+    <a href="<?php echo base_url(); ?>index.php/mahasiswa/addnew" class="btn btn-primary">
+        <span class="glyphicon glyphicon-plus"></span> Add New</a><br><br>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nama Mahasiswa</th>
+                <th>Kelas</th>
+                <th>Alamat</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            foreach($mahasiswa as $mhs){
+                ?>
+                <tr>
+                    <td><?php echo $mhs->id; ?></td>
+                    <td><?php echo $mhs->namamhs; ?></td>
+                    <td><?php echo $mhs->kelas; ?></td>
+                    <td><?php echo $mhs->alamat; ?></td>
+                    <td><a href="<?php echo base_url(); ?>index.php/mahasiswa/edit/<?php echo $mhs->id; ?>" class="btn btn-success">
+                        <span class="glyphicon glyphicon-edit"></span> Edit</a> || 
+                        <a href="<?php echo base_url(); ?>index.php/mahasiswa/delete/<?php echo $mhs->id; ?>" class="btn btn-danger">
+                        <span class="glyphicon glyphicon-trash"></span> Delete</a></td>
+                </tr>
+                <?php
+            }
+            ?>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
+```
+
+* Buat file : `addmahasiswa.php`
+
+```php
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>bootstrap/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+	<h1 class="page-header text-center">CRUD Data Mahasiswa</h1>
+			<h3>Add Form
+				<span class="pull-right"><a href="<?php echo base_url(); ?>" class="btn btn-primary"><span class="glyphicon glyphicon-arrow-left"></span> Back</a></span>
+			</h3>
+			<hr>
+			<form method="POST" action="<?php echo base_url(); ?>index.php/mahasiswa/insert">
+				<div class="form-group">
+					<label>Nama Mahasiswa:</label>
+					<input type="text" class="form-control" name="namamhs">
+				</div>
+				<div class="form-group">
+					<label>Kelas:</label>
+					<input type="text" class="form-control" name="kelas">
+				</div>
+				<div class="form-group">
+					<label>Alamat:</label>
+					<input type="text" class="form-control" name="alamat">
+				</div>
+				<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-disk"></span> Simpan </button>
+			</form>		
+</div>
+</body>
+</html>
+```
+
+* Buat file : `editmahasiswa.php`, COPY-PASTE dari `addmahasiswa.php`, lalu `edit`:
+
+
+```php
+    <h3>Edit Form
+    ...
+    <?php extract($mahasiswa); ?>
+        <form method="POST" action="<?php echo base_url(); ?>index.php/mahasiswa/update/<?php echo $id; ?>">
+        ...
+        <input type="text" class="form-control" value="<?php echo $namamhs; ?>" name="namamhs">
+        ...
+        <input type="text" class="form-control" value="<?php echo $kelas; ?>" name="kelas">
+        ...
+        <input type="text" class="form-control" value="<?php echo $alamat; ?>" name="alamat">
+        ...
+        <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-disk"></span> Update </button>
 ```
