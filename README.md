@@ -1,4 +1,6 @@
-# Pert10-Bootstrap
+# Pert11 - CRUD Bootstrap
+
+![](/CI-CRUD-UI.gif)
 
 > `Step-1` : Menggunakan  `Bootstrap` pada `CodeIgniter`.
 
