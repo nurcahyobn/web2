@@ -1,6 +1,4 @@
-# Pert11 - Insert dan View MySQL CI
-
-![](/CI-CRUD-UI.gif)
+# Pert12 - Insert dan View MySQL CI
 
 > `Step-1` : Menggunakan  `Bootstrap` pada `CodeIgniter`.
 
