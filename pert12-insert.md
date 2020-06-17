@@ -52,16 +52,18 @@ $config['base_url'] = 'http://localhost/latih1/';
 		public function insert($barang){
 			return $this->db->insert('barang', $barang);
 		} 
+	}
 ?>
 ```
 
 > `Step-6` : Membuat `Controller` di CI
 
-* Buat file `Mahasiswa.php` di folder `application/controllers`.
+* Buat file `Barang.php` di folder `application/controllers`.
 * Perhatikan penamaan file, sama seperti nama `model` diawali huruf CAPITAL.
-* Digunakan untuk mengatur aplikasi pada data mahasiswa.
+* Digunakan untuk mengatur aplikasi pada data barang.
 
 ```php
+<?php
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
  
@@ -83,8 +85,8 @@ class Barang extends CI_Controller {
 	}
  
 	public function insert(){
-		$mahasiswa['namabarang'] = $this->input->post('namabarang');
-		$mahasiswa['stok'] = $this->input->post('stok');
+		$barang['namabarang'] = $this->input->post('namabarang');
+		$barang['stok'] = $this->input->post('stok');
  
 		$query = $this->barang_model->insert($barang);
  
@@ -92,6 +94,7 @@ class Barang extends CI_Controller {
 			header('location:'.base_url().$this->index());
 		}
 	} 
+}
 ?>
 ```
 
@@ -138,37 +141,6 @@ $route['default_controller'] = 'barang';
             ?>
         </tbody>
     </table>
-</div>
-</body>
-</html>
-```
-
-* Buat file : `addbarang.php`
-
-```php
-<!DOCTYPE html>
-<html>
-<head>
-	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>bootstrap/css/bootstrap.min.css">
-</head>
-<body>
-<div class="container">
-	<h1 class="page-header text-center">CRUD Data Barang</h1>
-			<h3>Add Form
-				<span class="pull-right"><a href="<?php echo base_url(); ?>" class="btn btn-primary"><span class="glyphicon glyphicon-arrow-left"></span> Back</a></span>
-			</h3>
-			<hr>
-			<form method="POST" action="<?php echo base_url(); ?>index.php/barang/insert">
-				<div class="form-group">
-					<label>Nama Barang:</label>
-					<input type="text" class="form-control" name="namabarang">
-				</div>
-				<div class="form-group">
-					<label>Stok:</label>
-					<input type="text" class="form-control" name="stok">
-				</div>				
-				<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-disk"></span> Simpan </button>
-			</form>		
 </div>
 </body>
 </html>
