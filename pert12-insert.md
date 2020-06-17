@@ -7,12 +7,16 @@
 > `Step-2` : Database mysql `test` dengan nama tabel `mahasiswa`:
 
 ```sql
-    CREATE TABLE `barang` (
-        `id` int(11) NOT NULL AUTO_INCREMENT,
-        `namabarang` varchar(30) NOT NULL,
-        `stok` varchar(10) NOT NULL,
-    PRIMARY KEY(`id`)
-    ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE `barang` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`namabarang` varchar(30) NOT NULL,
+`stok` varchar(10) NOT NULL,
+PRIMARY KEY(`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+INSERT INTO `barang` (`id`, `namabarang`, `stok`) VALUES
+(1, 'Buku Tulis', '4'),
+(2, 'Jam Tangan ', '5');
 ```
 
 > `Step-3` : Koneksi CI ke MYSQL. Buka file `database.php` di folder `application/config`.
