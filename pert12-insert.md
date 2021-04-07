@@ -1,10 +1,11 @@
 # Insert dan View MySQL CI
+![](/latih1.jpg)
 
-> `Step-1` : Menggunakan  `Bootstrap` pada `CodeIgniter`.
+> `Step-1` : Buat folder `latih1` untuk aplikasi `CodeIgniter`.
 
-* Download [Bootstrap](https://github.com/nurcahyobn/web2/raw/master/bootstrap.zip) letakkan di folder `latih1`
+> `Step-2` : Download [Bootstrap](https://github.com/nurcahyobn/web2/raw/master/bootstrap.zip), extract pindahkan ke folder `latih1`
 
-> `Step-2` : Database mysql `test` dengan nama tabel `mahasiswa`:
+> `Step-3` : Database mysql `test` dengan nama tabel `barang` berikut ini:
 
 ```sql
 CREATE TABLE `barang` (
@@ -19,7 +20,7 @@ INSERT INTO `barang` (`id`, `namabarang`, `stok`) VALUES
 (2, 'Jam Tangan ', '5');
 ```
 
-> `Step-3` : Koneksi CI ke MYSQL. Buka file `database.php` di folder `application/config`.
+> `Step-4` : Di folder `application/config`, edit file `database.php`
 
 ```php
 	'hostname' => 'localhost',
@@ -28,17 +29,7 @@ INSERT INTO `barang` (`id`, `namabarang`, `stok`) VALUES
 	'database' => 'test',
 ```
 
-> `Step-4` : Konfigurasi URL Homebase. Edit `config.php` di folder `application/config`.
-
-```
-$config['base_url'] = 'http://localhost/latih1/';
-```
-
-> `Step-5` : Membuat `MODEL` di CI. 
-
-* Buat file `Barang_model.php` di folder `application/models`.
-* Perhatikan bahwa huruf pertama nama model harus dalam huruf CAPITAL.
-* Nama model disesuaikan dengan nama `tabel` atau `objek` untuk mudah dipahami.
+> `Step-5` : Membuat `MODEL` di folder `application/models`, dengan file `Barang_model.php`
 
 ```php
 <?php
@@ -60,17 +51,10 @@ $config['base_url'] = 'http://localhost/latih1/';
 ?>
 ```
 
-> `Step-6` : Membuat `Controller` di CI
-
-* Buat file `Barang.php` di folder `application/controllers`.
-* Perhatikan penamaan file, sama seperti nama `model` diawali huruf CAPITAL.
-* Digunakan untuk mengatur aplikasi pada data barang.
+> `Step-6` : Membuat `CONTROLLER` di folder `application/controllers`, dengan file `Barang.php`
 
 ```php
-<?php
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
- 
+<?php 
 class Barang extends CI_Controller {
  
 	function __construct(){
@@ -81,11 +65,11 @@ class Barang extends CI_Controller {
  
 	public function index(){
 		$data['barang'] = $this->barang_model->getAllData();
-		$this->load->view('barang_list.php', $data);
+		$this->load->view('barang_list', $data);  // barang_list.php
 	}
  
 	public function addnew(){
-		$this->load->view('addbarang.php');
+		$this->load->view('addbarang');  // addbarang.php
 	}
  
 	public function insert(){
@@ -102,13 +86,7 @@ class Barang extends CI_Controller {
 ?>
 ```
 
-> `Step-8` : Mengatur `ROUTE` di CI. Edit `routes.php` di folder `application/config`.
-
-```
-$route['default_controller'] = 'barang';
-```
-
-> `Step-9` : Membuat `VIEW` sesuai Controller pada `Step-6`. Buka folder `application/views`.
+> `Step-7` : Membuat `VIEW` sesuai Controller pada `Step-6`. Buka folder `application/views`.
 
 * Buat file : `barang_list.php`
 
@@ -145,6 +123,39 @@ $route['default_controller'] = 'barang';
             ?>
         </tbody>
     </table>
+</div>
+</body>
+</html>
+```
+
+```php
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>bootstrap/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+	<h1 class="page-header text-center">CRUD Data Mahasiswa</h1>
+			<h3>Add Form
+				<span class="pull-right"><a href="<?php echo base_url(); ?>" class="btn btn-primary"><span class="glyphicon glyphicon-arrow-left"></span> Back</a></span>
+			</h3>
+			<hr>
+			<form method="POST" action="<?php echo base_url(); ?>index.php/mahasiswa/insert">
+				<div class="form-group">
+					<label>Nama Mahasiswa:</label>
+					<input type="text" class="form-control" name="namamhs">
+				</div>
+				<div class="form-group">
+					<label>Kelas:</label>
+					<input type="text" class="form-control" name="kelas">
+				</div>
+				<div class="form-group">
+					<label>Alamat:</label>
+					<input type="text" class="form-control" name="alamat">
+				</div>
+				<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-disk"></span> Simpan </button>
+			</form>		
 </div>
 </body>
 </html>
