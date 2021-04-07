@@ -33,55 +33,55 @@ INSERT INTO `barang` (`id`, `namabarang`, `stok`) VALUES
 
 ```php
 <?php
-	class Barang_model extends CI_Model {
-		function __construct(){
-			parent::__construct();
-			$this->load->database();
-		}
+    class Barang_model extends CI_Model {
+        function __construct(){
+            parent::__construct();
+            $this->load->database();
+        }
 
-		public function getAllData(){
-			$query = $this->db->get('barang');
-			return $query->result(); 
-		}
+        public function getAllData(){
+            $query = $this->db->get('barang');
+            return $query->result(); 
+        }
 
-		public function insert($barang){
-			return $this->db->insert('barang', $barang);
-		} 
-	}
+        public function insert($barang){
+            return $this->db->insert('barang', $barang);
+        } 
+    }
 ```
 
 > `Step-6` : Membuat `CONTROLLER` di folder `application/controllers`, dengan file `Barang.php`
 
 ```php
 <?php
-	class Barang extends CI_Controller {
-	
-		function __construct(){
-			parent::__construct();
-			$this->load->helper('url');
-			$this->load->model('barang_model');
-		}
-	
-		public function index(){
-			$data['barang'] = $this->barang_model->getAllData();
-			$this->load->view('barang_list.php', $data);
-		}
-	
-		public function addnew(){
-			$this->load->view('addbarang.php');
-		}
-	
-		public function insert(){
-			$barang['namabarang'] = $this->input->post('namabarang');
-			$barang['stok'] = $this->input->post('stok');
-	
-			$query = $this->barang_model->insert($barang);
-	
-			if($query){
-				header('location:../barang');
-			}
-		} 
-	}
+    class Barang extends CI_Controller {
+        
+        function __construct(){
+            parent::__construct();
+            $this->load->helper('url');
+            $this->load->model('barang_model');
+        }
+    
+        public function index(){
+            $data['barang'] = $this->barang_model->getAllData();
+            $this->load->view('barang_list.php', $data);
+        }
+    
+        public function addnew(){
+            $this->load->view('addbarang.php');
+        }
+    
+        public function insert(){
+            $barang['namabarang'] = $this->input->post('namabarang');
+            $barang['stok'] = $this->input->post('stok');
+    
+            $query = $this->barang_model->insert($barang);
+    
+            if($query){
+                header('location:../barang');
+            }
+        } 
+    }
 ```
 
 > `Step-7` : Membuat `VIEW` sesuai Controller pada `Step-6`. Buka folder `application/views`.
@@ -91,35 +91,27 @@ INSERT INTO `barang` (`id`, `namabarang`, `stok`) VALUES
 ```php
 <!DOCTYPE html>
 <html>
-<head>
-	<link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.min.css">
-</head>
+<head><link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.min.css"></head>
 <body>
 <div class="container">
-	<h1 class="page-header text-center">Data Barang</h1>
+    <h1 class="page-header text-center">Data Barang</h1>
     <a href="barang/addnew" class="btn btn-primary">
-        <span class="glyphicon glyphicon-plus"></span> Add New</a><br><br>
+    <span class="glyphicon glyphicon-plus"></span> Add New</a><br><br>
     <table class="table table-bordered table-striped">
         <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nama Barang</th>
-                <th>Stok</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-            foreach($barang as $brg){
-                ?>
-                <tr>
-                    <td><?php echo $brg->id; ?></td>
-                    <td><?php echo $brg->namabarang; ?></td>
-                    <td><?php echo $brg->stok; ?></td>
-                </tr>
-                <?php
-            }
-            ?>
-        </tbody>
+        <tr>
+            <th>ID</th><th>Nama Barang</th><th>Stok</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach($barang as $brg){ ?>
+        <tr>
+            <td><?php echo $brg->id; ?></td>
+            <td><?php echo $brg->namabarang; ?></td>
+            <td><?php echo $brg->stok; ?></td>
+        </tr>
+        <?php } ?>
+    </tbody>
     </table>
 </div>
 </body>
@@ -132,26 +124,26 @@ INSERT INTO `barang` (`id`, `namabarang`, `stok`) VALUES
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" type="text/css" href="../../bootstrap/css/bootstrap.min.css">
+   <link rel="stylesheet" type="text/css" href="../../bootstrap/css/bootstrap.min.css">
 </head>
 <body>
 <div class="container">
-	<h1 class="page-header text-center">Input Data Barang</h1>
-			<h3>Add Form
-				<span class="pull-right"><a href="../barang" class="btn btn-primary"><span class="glyphicon glyphicon-arrow-left"></span> Back</a></span>
-			</h3>
-			<hr>
-			<form method="POST" action="../barang/insert">
-				<div class="form-group">
-					<label>Nama Barang:</label>
-					<input type="text" class="form-control" name="namabarang">
-				</div>
-				<div class="form-group">
-					<label>Stok:</label>
-					<input type="text" class="form-control" name="stok">
-				</div>				
-				<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-disk"></span> Simpan </button>
-			</form>		
+   <h1 class="page-header text-center">Input Data Barang</h1>
+         <h3>Add Form
+            <span class="pull-right"><a href="../barang" class="btn btn-primary"><span class="glyphicon glyphicon-arrow-left"></span> Back</a></span>
+         </h3>
+         <hr>
+         <form method="POST" action="../barang/insert">
+            <div class="form-group">
+               <label>Nama Barang:</label>
+               <input type="text" class="form-control" name="namabarang">
+            </div>
+            <div class="form-group">
+               <label>Stok:</label>
+               <input type="text" class="form-control" name="stok">
+            </div>            
+            <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-disk"></span> Simpan </button>
+         </form>      
 </div>
 </body>
 </html>
