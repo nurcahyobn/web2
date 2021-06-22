@@ -13,7 +13,7 @@
 2. nama table : `nurcahyo` sesuaikan dengan namanya
 
 | nim      | namamahasiswa | alamat     |
-| :---        |    :----:   |          ---: |
+| :---        |    :----   |          :--- |
 | 2018020003      | Nurcahyo Budi Nugroho       | Medan Johor   |
 | 2018020004   | Akmal        | Medan Helvetia      |
 
