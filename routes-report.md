@@ -33,19 +33,32 @@ INSERT INTO mahasiswa VALUES (10, 'Muhammad Riski', '12837373839', 'L', 'Fisip')
 
 4. Menghapus index.php pada url. Buat file `.htaccess` pada `kuliah` lalu ketik perintah berikut:
 
+```js
 RewriteEngine on
 RewriteCond $1 !^(index\.php|resources|robots\.txt)
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ index.php/$1 [L,QSA]
+```
+
+5. Ubah kode pada /application/config/autoload.php
+
+```php
+$autoload['helper'] = array('url');
+$autoload['libraries'] = array('database');
+```
+
+6. Ubah kode pada /application/config/config.php
+
+```php
+$config['base_url'] = 'http://localhost/project-01/';
+```
 
 # Membuat Report / Laporan pada Web
 
-Donwload master dompdf link google drive : Download
-Langkah 1. Anda download Library Dompdfnya dan silahkan anda ekstrak file nya dan kopi hasil ekstraknya di folder assets jika sudah selesai maka struktur foldernya akan seperti berikut :
-assets/dompdf/autoload.inc.php
+### Langkah 1. Download Library [Dompdf](https://goo.gl/bHyn3A)nya dan Ekstrak filenya di folder `kampus/assets`.
 
-Langkah 2. selanjutnya anda buat sebuah file pdf di folder libraries dengan nama file Mypdf.php jika sudah selesai struktu Filenya akan seperti ini libraries/Mypdf. Dan simple saja anda tinggal kopi kode dibawah ini di file Mypdf.php.
+### Langkah 2. selanjutnya anda buat sebuah file pdf di folder libraries dengan nama file Mypdf.php jika sudah selesai struktu Filenya akan seperti ini libraries/Mypdf. Dan simple saja anda tinggal kopi kode dibawah ini di file Mypdf.php.
    
 ```php 
 <?php
