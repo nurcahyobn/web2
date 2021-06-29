@@ -51,12 +51,24 @@ $autoload['libraries'] = array('database');
 6. Ubah kode pada /application/config/config.php
 
 ```php
-$config['base_url'] = 'http://localhost/project-01/';
+$config['base_url'] = 'http://localhost/kuliah/';
+```
+
+
+6. Ubah kode pada /application/config/config.php
+
+```php
+$db['default'] = array(
+	'dsn'	=> '',
+	'hostname' => 'localhost',
+	'username' => 'root',
+	'password' => '',
+	'database' => 'trigunadharma',
 ```
 
 # Membuat Report / Laporan pada Web
 
-#### Langkah 1. Download Library [Dompdf](https://goo.gl/bHyn3A)nya dan Ekstrak filenya di folder `kampus/assets`.
+#### Langkah 1. Download Library [Dompdf](https://goo.gl/bHyn3A)nya dan Ekstrak filenya di folder `kuliah/assets`.
 
 #### Langkah 2. Buat file pdf di folder `libraries` dengan nama file `Mypdf.php` jika sudah selesai struktu Filenya akan seperti ini `libraries/Mypdf`
    
@@ -172,10 +184,12 @@ Langkah 4. View : Selanjutnya anda buat folder `laporan` di folder `view` dan bu
         <td><?php echo $no++ ?></td>
         <td><?php echo $row->nim ?></td>
         <td><?php echo $row->nama ?></td>
-        <td><?php echo $row['fakultas'] ?></td>
+        <td><?php echo $row->fakultas ?></td>
       </tr>
     <?php endforeach ?>
   </table>
 </body>
 </html>
 ```
+
+#### buka url: `http://localhost/kuliah/laporan`
