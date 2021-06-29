@@ -31,7 +31,7 @@ INSERT INTO mahasiswa VALUES (9, 'Johny', '12363377332', 'L', 'Pertanian');
 INSERT INTO mahasiswa VALUES (10, 'Muhammad Riski', '12837373839', 'L', 'Fisip');
 ```
 
-4. Menghapus index.php pada url. Buat file `.htaccess` pada `kuliah` lalu ketik perintah berikut:
+3. Menghapus index.php pada url. Buat file `.htaccess` pada `kuliah` lalu ketik perintah berikut:
 
 ```js
 RewriteEngine on
@@ -41,21 +41,21 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ index.php/$1 [L,QSA]
 ```
 
-5. Ubah kode pada /application/config/autoload.php
+4. Ubah kode pada /application/config/autoload.php
 
 ```php
 $autoload['helper'] = array('url');
 $autoload['libraries'] = array('database');
 ```
 
-6. Ubah kode pada /application/config/config.php
+5. Ubah kode pada /application/config/config.php
 
 ```php
 $config['base_url'] = 'http://localhost/kuliah/';
 ```
 
 
-6. Ubah kode pada /application/config/config.php
+6. Ubah kode pada /application/config/database.php
 
 ```php
 $db['default'] = array(
@@ -68,9 +68,9 @@ $db['default'] = array(
 
 # Membuat Report / Laporan pada Web
 
-#### Langkah 1. Download Library [Dompdf](https://goo.gl/bHyn3A)nya dan Ekstrak filenya di folder `kuliah/assets`.
+##### Langkah 1. Download Library [Dompdf](https://goo.gl/bHyn3A) nya dan Ekstrak filenya di folder `kuliah/assets`.
 
-#### Langkah 2. Buat file pdf di folder `libraries` dengan nama file `Mypdf.php` jika sudah selesai struktu Filenya akan seperti ini `libraries/Mypdf`
+##### Langkah 2. Buat file pdf di folder `libraries` dengan nama file `Mypdf.php` jika sudah selesai struktu Filenya akan seperti ini `libraries/Mypdf`
    
 ```php 
 <?php
@@ -105,7 +105,7 @@ class Mypdf
 ```
   
   
-Langkah 3. Buat file `Model` file:`Mahasiswa_model.php`  dan Controllernya file: `Laporan.php`.
+##### Langkah 3. Buat file `Model` file: `Mahasiswa_model.php`  dan Controllernya file: `Laporan.php`.
 
 ```php
 <?php
@@ -146,7 +146,7 @@ class Laporan extends CI_Controller {
 ```    
 
   
-Langkah 4. View : Selanjutnya anda buat folder `laporan` di folder `view` dan buat file `dompdf.php` didalamnya
+##### Langkah 4. View : Selanjutnya anda buat folder `laporan` di folder `view` dan buat file `dompdf.php` didalamnya
     
 ```php
 <!DOCTYPE html>
@@ -192,4 +192,4 @@ Langkah 4. View : Selanjutnya anda buat folder `laporan` di folder `view` dan bu
 </html>
 ```
 
-#### buka url: `http://localhost/kuliah/laporan`
+##### buka url: `http://localhost/kuliah/laporan`
