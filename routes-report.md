@@ -56,9 +56,9 @@ $config['base_url'] = 'http://localhost/project-01/';
 
 # Membuat Report / Laporan pada Web
 
-### Langkah 1. Download Library [Dompdf](https://goo.gl/bHyn3A)nya dan Ekstrak filenya di folder `kampus/assets`.
+#### Langkah 1. Download Library [Dompdf](https://goo.gl/bHyn3A)nya dan Ekstrak filenya di folder `kampus/assets`.
 
-### Langkah 2. selanjutnya anda buat sebuah file pdf di folder libraries dengan nama file Mypdf.php jika sudah selesai struktu Filenya akan seperti ini libraries/Mypdf. Dan simple saja anda tinggal kopi kode dibawah ini di file Mypdf.php.
+#### Langkah 2. Buat file pdf di folder `libraries` dengan nama file `Mypdf.php` jika sudah selesai struktu Filenya akan seperti ini `libraries/Mypdf`
    
 ```php 
 <?php
@@ -93,8 +93,26 @@ class Mypdf
 ```
   
   
-Langkah 3. Buat file Controllernya dengan nama file Laporan.php dan kopikan kode dibawah ini.
-    
+Langkah 3. Buat file `Model` file:`Mahasiswa_model.php`  dan Controllernya file: `Laporan.php`.
+
+```php
+<?php
+	class Mahasiswa_model extends CI_Model {
+		function __construct(){
+			parent::__construct();
+			$this->load->database();
+		}
+ 
+		public function getAllMahasiswa(){
+			$query = $this->db->get('mahasiswa');
+			return $query->result(); 
+		}
+	}
+?>
+```
+
+<hr/>
+
 ```php
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
@@ -103,22 +121,20 @@ class Laporan extends CI_Controller {
 
   public function index()
   {
+    $this->load->model('mahasiswa_model');
+
     $this->load->library('mypdf');
-    $data['data'] = array(
-      ['nim'=>'123456789','name'=>'example name 1','jurusan'=>'Teknik Informatika'],
-      ['nim'=>'123456789', 'name'=>'example name 2', 'jurusan'=>'Jaringan']
-    );
+    $data['data'] = $this->mahasiswa_model->getAllMahasiswa();
     $this->mypdf->generate('Laporan/dompdf', $data, 'laporan-mahasiswa', 'A4', 'landscape');
   }
 
 }
-
 /* End of file Laporan.php */
 /* Location: ./application/controllers/Laporan.php */
 ```    
 
   
-Langkah 4. View : Selanjutnya anda buat folder laporan di folder view dan buat file dompdf.php didalamnya. Dan simple saja anda tinggal kopikan kode view dibawah ini :
+Langkah 4. View : Selanjutnya anda buat folder `laporan` di folder `view` dan buat file `dompdf.php` didalamnya
     
 ```php
 <!DOCTYPE html>
@@ -129,45 +145,34 @@ Langkah 4. View : Selanjutnya anda buat folder laporan di folder view dan buat f
   <title>Laporan</title>
   <link rel="stylesheet" href="">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <style>
-    .line-title{
-      border: 0;
-      border-style: inset;
-      border-top: 1px solid #000;
-    }
-  </style>
 </head>
 <body>
-  <img src="assets/img/logo.jpg" style="position: absolute; width: 60px; height: auto;">
   <table style="width: 100%;">
     <tr>
       <td align="center">
         <span style="line-height: 1.6; font-weight: bold;">
-          SEKOLAH TINGGI ILMU KOMPUTER DAN INFORMATIKA
-          <br>MAKASSAR INDONESIA
+          SEKOLAH TINGGI MANAJEMEN INFORMATIKA DAN KOMPUTER
+          <br>TRIGUNA DHARMA
         </span>
       </td>
     </tr>
   </table>
 
-  <hr class="line-title"> 
-  <p align="center">
-    LAPORAN DATA MAHASISWA <br>
-    <b>Angkatan 2018</b>
-  </p>
+  <hr> 
+  
   <table class="table table-bordered">
     <tr>
       <th>#</th>
       <th>Nim</th>
       <th>Nama</th>
-      <th>Jurusan</th>
+      <th>Fakultas</th>
     </tr>
     <?php $no = 1; foreach ($data as $row): ?>
       <tr>
         <td><?php echo $no++ ?></td>
-        <td><?php echo $row['nim'] ?></td>
-        <td><?php echo $row['name'] ?></td>
-        <td><?php echo $row['jurusan'] ?></td>
+        <td><?php echo $row->nim ?></td>
+        <td><?php echo $row->nama ?></td>
+        <td><?php echo $row['fakultas'] ?></td>
       </tr>
     <?php endforeach ?>
   </table>
