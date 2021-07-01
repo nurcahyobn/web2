@@ -1,6 +1,6 @@
 # Library DataTables di CodeIgniter
 
-Download materi : [database & library](https://file.io/q6aqqghrshTR)
+Download materi : [database & library](https://www.jetdrop.net/FEbqChzUkeN#EzAsBoA4FZ2BmADOAjKY4CcGGfNeOUANlU0nHh0VOEQHZVQVxiIxkRiB9AWwHcA4gCcAGgDEAFgEUAlgGcA5vIAeAOwCSwgLKSAngC8AZmoCG4lQAdIB6QCtRooA)
 
 ##### 1. Buat sites `CodeIgniter` dengan `http://localhost/pos/`
 
