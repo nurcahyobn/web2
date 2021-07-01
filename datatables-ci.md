@@ -8,14 +8,14 @@ Download materi : [database & library](https://file.io/q6aqqghrshTR)
 
 ##### setelah buat database `db` pilih `Import` pilih file `mahasiswa.sql`
 
-> 3. Ubah kode pada /application/config/autoload.php
+##### 3. Ubah kode pada /application/config/autoload.php
 
 ```php
 $autoload['helper'] = array('url');
 $autoload['libraries'] = array('database');
 ```
 
-> 4. Ubah kode pada /application/config/config.php
+###### 4. Ubah kode pada /application/config/config.php
 
 ```php
 $config['base_url'] = 'http://localhost/pos/';
