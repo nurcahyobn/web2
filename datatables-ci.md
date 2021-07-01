@@ -1,8 +1,12 @@
 # Library DataTables di CodeIgniter
 
+Download materi : [database & library](https://file.io/q6aqqghrshTR)
+
 > 1. Buat sites `CodeIgniter` dengan `http://localhost/pos/`
 
 > 2. Buat database `db15` dengan structur table berikut:
+
+##### setelah buat database `db` pilih `Import` pilih file `mahasiswa.sql`
 
 > 3. Ubah kode pada /application/config/autoload.php
 
@@ -11,16 +15,16 @@ $autoload['helper'] = array('url');
 $autoload['libraries'] = array('database');
 ```
 
-4. Ubah kode pada /application/config/config.php
+> 4. Ubah kode pada /application/config/config.php
 
 ```php
 $config['base_url'] = 'http://localhost/pos/';
 ```
 
-5. Ubah kode pada /application/config/database.php
+> 5. Ubah kode pada /application/config/database.php
 
 ```php
-$db['default'] = array(
+   $db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => 'localhost',
 	'username' => 'root',
@@ -50,6 +54,8 @@ Class Mahasiswa extends CI_Controller{
 }
 ```
 
+> Run : `http://localhost/pos/index.php/mahasiswa/json`
+
 > 7. Buat file `View` file: `Mahasiswa_view.php`.
 
 ```php
@@ -64,7 +70,7 @@ Class Mahasiswa extends CI_Controller{
             <h3>DATA MAHASISWA</h3>
             <table id="table" class="display" cellspacing="0" width="100%">
                 <thead>
-                    <tr><th>FOTO</th><th>Nama Mahasiswa</th><th>Email</th><th>Alamat</th><th>Kelas</th></tr>
+                    <tr><th>FOTO</th><th>Nama Mahasiswa</th><th>Email</th><th>Kelas</th></tr>
                 </thead>
                 <tbody>
                 </tbody>
@@ -91,10 +97,9 @@ Class Mahasiswa extends CI_Controller{
                     },
                     //Set column definition initialisation properties.
                     "columns": [
-                        {"data": "foto",width:170},
-                        {"data": "namamhs",width:100},
+                        {"data": "nim",width:170},
+                        {"data": "nama",width:100},
                         {"data": "email",width:100},
-                        {"data": "alamat",width:100}
                         {"data": "kelas",width:100}
                     ],
 
@@ -106,3 +111,4 @@ Class Mahasiswa extends CI_Controller{
     </body>
 </html>
 ```
+> Run : `http://localhost/pos/index.php/mahasiswa/`
