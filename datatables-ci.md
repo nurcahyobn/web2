@@ -4,7 +4,11 @@ Download materi : [database & library](https://file.io/q6aqqghrshTR)
 
 ##### 1. Buat sites `CodeIgniter` dengan `http://localhost/pos/`
 
+<hr/>
+
 ##### 2. Buat database `db15` dengan structur table berikut:
+
+<hr/>
 
 Setelah buat database `db` pilih `Import` pilih file `mahasiswa.sql`
 
