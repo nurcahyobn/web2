@@ -2,11 +2,11 @@
 
 Download materi : [database & library](https://file.io/q6aqqghrshTR)
 
-> 1. Buat sites `CodeIgniter` dengan `http://localhost/pos/`
+##### 1. Buat sites `CodeIgniter` dengan `http://localhost/pos/`
 
-> 2. Buat database `db15` dengan structur table berikut:
+##### 2. Buat database `db15` dengan structur table berikut:
 
-##### setelah buat database `db` pilih `Import` pilih file `mahasiswa.sql`
+Setelah buat database `db` pilih `Import` pilih file `mahasiswa.sql`
 
 ##### 3. Ubah kode pada /application/config/autoload.php
 
@@ -15,13 +15,13 @@ $autoload['helper'] = array('url');
 $autoload['libraries'] = array('database');
 ```
 
-###### 4. Ubah kode pada /application/config/config.php
+##### 4. Ubah kode pada /application/config/config.php
 
 ```php
 $config['base_url'] = 'http://localhost/pos/';
 ```
 
-> 5. Ubah kode pada /application/config/database.php
+##### 5. Ubah kode pada /application/config/database.php
 
 ```php
    $db['default'] = array(
@@ -31,9 +31,9 @@ $config['base_url'] = 'http://localhost/pos/';
 	'password' => '',
 	'database' => 'db15',
 ```
-> 6. Menambahkan library di folder `libraries` dengan nama file `Datatables.php`.
+##### 6. Menambahkan library di folder `libraries` dengan nama file `Datatables.php`.
 
-> 7. Buat file `Controller` file: `Mahasiswa.php`.
+##### 7. Buat file `Controller` file: `Mahasiswa.php`.
 
 ```php
 <?php
@@ -56,7 +56,7 @@ Class Mahasiswa extends CI_Controller{
 
 > Run : `http://localhost/pos/index.php/mahasiswa/json`
 
-> 7. Buat file `View` file: `Mahasiswa_view.php`.
+##### 7. Buat file `View` file: `Mahasiswa_view.php`.
 
 ```php
 <html>
