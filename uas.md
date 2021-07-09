@@ -83,6 +83,8 @@ $db['default'] = array(
 	'database' => 'uas_nurcahyo',
 ```
 
-##### Tabel Mahasiswa buat kan DataTables (Pert15)
+<hr/>
 
-##### Tabel Buku buat kan Report (Pert14)
+#### Soal-1. Tabel Mahasiswa buat kan DataTables (Pert15)
+
+#### Soal-2. Tabel Buku buat kan Report (Pert14)
